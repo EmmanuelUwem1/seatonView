@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Darker_Grotesque } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
 
 // Import and configure the Darker Grotesque font
 const darkerGrotesque = Darker_Grotesque({
@@ -24,7 +26,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={darkerGrotesque.variable}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <Header />
+        <main className="overflow-x-hidden min-h-screen">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
