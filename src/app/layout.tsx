@@ -1,15 +1,8 @@
 import type { Metadata } from "next";
-import { Darker_Grotesque } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
-// Import and configure the Darker Grotesque font
-const darkerGrotesque = Darker_Grotesque({
-  subsets: ["latin"],
-  variable: "--font-darker-grotesque",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "SeatonView | Discover, Collect & Trade NFTs on TON",
@@ -25,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={darkerGrotesque.variable}>
+    <html lang="en" className="">
       <body className="antialiased">
         <Header />
         <main className="overflow-x-hidden min-h-screen">{children}</main>
