@@ -28,6 +28,7 @@ export default function RootLayout({
     <html lang="en" className="">
       <body className={`${darkerGrotesque.className} antialiased`}>
         <Header />
+
         <main className="overflow-x-hidden min-h-screen">{children}</main>
         <Footer />
       </body>

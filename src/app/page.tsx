@@ -1,9 +1,11 @@
-// import Image from "next/image";
-
+import Hero from "@/components/hero";
+import Trending from "@/components/trending";
 export default function Home() {
   return (
-    <div className="">
-     
-    </div>
+    <>
+      <Hero />
+      <Trending />
+    </>
+
   );
 }
