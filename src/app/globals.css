@@ -21,7 +21,11 @@ body {
   radial-gradient(at 54% 0%, hsla(216, 100%, 50%, 0.22) 0px, transparent 50%),
   radial-gradient(at 100% 86%, hsla(216, 100%, 50%, 0.244) 0px, transparent 50%),
   radial-gradient(at 0% 65%, hsla(216, 100%, 50%, 0.102) 0px, transparent 50%);
+  
+  
+ 
 }
 .transition-class{
   transition: all 0.4s ease-in-out;
 }
+

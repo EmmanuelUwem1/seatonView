@@ -11,10 +11,10 @@ function Trending() {
       {/* Header */}
       <div className="flex justify-between items-center w-full">
         <h2 className="font-semibold text-4xl">Trending</h2>
-        <div className="flex justify-center items-center gap-4 font-semibold text-lg">
+        <div className="flex justify-center items-center gap-4 font-semibold text-lg bg-[#010A1E] rounded-[13px] p-1">
           <button
             onClick={() => setActiveTab("NFTs")}
-            className={`px-4 py-2 rounded-md cursor-pointer transition-class ${
+            className={`px-6 py-2 rounded-[13px] cursor-pointer transition-class ${
               activeTab === "NFTs"
                 ? "bg-[#FFFFFF] text-[#0098EA]"
                 : "bg-transparent text-gray-300 hover:text-[#0098EA]"
@@ -24,7 +24,7 @@ function Trending() {
           </button>
           <button
             onClick={() => setActiveTab("Collection")}
-            className={`px-4 py-2 rounded-md cursor-pointer transition-class ${
+            className={`px-6 py-2 rounded-[13px] cursor-pointer transition-class ${
               activeTab === "Collection"
                 ? "bg-[#FFFFFF] text-[#0098EA]"
                 : "bg-transparent text-gray-300 hover:text-[#0098EA]"

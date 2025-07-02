@@ -19,8 +19,13 @@ function NFTCard({ name, image, price }: NFTCardProps) {
         />
       </div>
       <div className="flex-col flex justify-start items-start text-start w-full">
-        <h3 className="font-semibold text-lg truncate">{name}</h3>
-        <p className="text-sm text-gray-300">Price: {price}</p>
+        <h3 className="font-smedium text-xl truncate">{name}</h3>
+        <span className="flex w-full justify-start items-center gap-2 relative">
+          <span className="relative flex justify-center items-center h-4 w-4">
+            <Image src={"/ton_symbol copy 1.png"} layout="fill" objectFit="contain" objectPosition="center" alt="ton" />
+          </span>
+          <p className="text-sm font-extrabold"> {price}</p>
+        </span>
       </div>
     </div>
   );
