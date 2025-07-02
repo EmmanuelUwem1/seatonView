@@ -14,21 +14,18 @@ type Props = {
 };
 
 export default function ClientBlogPage({ id }: Props) {
-    useEffect(() => {
-      const timeout = setTimeout(() => setRelatedLoaded(true), 400);
-      return () => clearTimeout(timeout);
-    }, []);
   const [imgLoaded, setImgLoaded] = useState(false);
   const [relatedLoaded, setRelatedLoaded] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setRelatedLoaded(true), 400);
+    return () => clearTimeout(timeout);
+  }, []);
 
   const blog = BlogMockData.find((b) => b.id === id);
   if (!blog) return notFound();
 
   const relatedBlogs = BlogMockData.filter((b) => b.id !== id).slice(0, 2);
-
-  // Simulate image load delay for related cards (optional)
-  
-
   const isLoading = !blog.title || !blog.image || !blog.description;
 
   return (
@@ -105,7 +102,11 @@ export default function ClientBlogPage({ id }: Props) {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.15, duration: 0.5, ease: "easeOut" }}
+                transition={{
+                  delay: i * 0.15,
+                  duration: 0.5,
+                  ease: "easeOut",
+                }}
                 whileHover={{ scale: 1.03 }}
                 className="bg-[#13294B] max-w-md w-80 rounded-md flex items-center gap-4 p-2"
               >
