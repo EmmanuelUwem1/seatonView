@@ -8,7 +8,7 @@ function Header() {
   const [isOpen, setOpen] = useState(false);
 
   const navLinks = [
-    { label: "Home", href: "#" },
+    { label: "Home", href: "/" },
     { label: "Explore NFTs", href: "#" },
     { label: "Collections", href: "#" },
     { label: "Wallet Viewer", href: "#" },

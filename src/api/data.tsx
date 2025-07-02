@@ -2,7 +2,7 @@ export const MockData = [
   {
     id: 1,
     name: "Frog Star #8798",
-    image: "/Image_fx-292 1.png",
+    // image: "/Image_fx-292 1.png",
     price: "7978",
     collection: "CryptoPunks",
   },
@@ -75,7 +75,7 @@ export const CollectionMockData = [
   {
     id: 1,
     name: "Frog Star #8798",
-    image: "/Image_fx-302 1.png",
+    // image: "/Image_fx-302 1.png",
     floor: "66.8",
     total: "9.2k",
     change: "+12%",
