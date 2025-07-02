@@ -2,6 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { Darker_Grotesque } from "next/font/google";
+
+const darkerGrotesque = Darker_Grotesque({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"], // Add other weights if needed like "500", "700"
+  display: "swap",
+});
 
 
 export const metadata: Metadata = {
@@ -19,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="">
-      <body className="antialiased">
+      <body className={`${darkerGrotesque.className} antialiased`}>
         <Header />
         <main className="overflow-x-hidden min-h-screen">{children}</main>
         <Footer />
