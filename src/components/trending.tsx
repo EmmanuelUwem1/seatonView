@@ -11,7 +11,7 @@ function Trending() {
   return (
     <section className="flex gap-8 flex-col justify-start items-start w-full px-4 pb-16  sm:px-8 md:px-16 lg:px-20">
       {/* Header */}
-      <div className="flex justify-between items-center w-full">
+      <div className="flex justify-between items-center w-full flex-wrap sm:flex-nowrap gap-8">
         <h2 className="font-semibold relative text-3xl md:text-5xl  text-white before:content-[''] before:absolute before:-bottom-2 before:left-0 before:h-[4px] before:w-[50%] before:bg-[#0098EA]">Trending</h2>
         <div className="flex justify-center items-center gap-4 font-semibold text-lg bg-[#010A1E] rounded-[13px] p-1">
           <button

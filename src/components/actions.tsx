@@ -9,7 +9,7 @@ function Actions() {
           title="Promotion"
           subtitle="Promote your NFT or Collection here."
           emailTo="dannyalexandri@gmail.com"
-          subject="Featured NFT Collection"
+          subject=" NFT Collection promotion"
           body={`Hello,\n I would like to make advertise my NFT on your platform.`}
         />
         <ActionCard
@@ -17,7 +17,7 @@ function Actions() {
           title="Feature Your Collection"
           subtitle="Submit a project you believe in."
           emailTo="dannyalexandri@gmail.com"
-          subject="Feature Submission"
+          subject="Feature"
           body={`Hello,\n  I would like to get an NFT artist for my upcoming project.`}
         />
       </div>

@@ -146,3 +146,28 @@ export const CollectionMockData = [
   },
 ];
 
+
+
+
+export const BlogMockData = [
+  {
+    id: "What are TON NFTs",
+    title: "What are TON NFTs?",
+    description: `ON NFTs are unique digital assets built on The Open Network (TON), a blockchain originally developed by Telegram. These NFTs (non-fungible tokens) represent ownership of digital items like art, collectibles, music, or even in-game items. Unlike cryptocurrencies, NFTs are non-interchangeable, meaning each one holds unique metadata and cannot be swapped on a one-to-one basis\nOn TON, NFTs benefit from lightning-fast transactions, low gas fees, and seamless integration with Telegram mini-apps. This makes NFT minting, trading, and collecting accessible even to non-technical users.\nTON NFTs are stored on-chain, meaning the ownership and transfer records are fully transparent and immutable. Whether you're an artist, gamer, or investor, TON NFTs offer an exciting way to participate in the decentralized digital economy. Plus, with Telegram’s massive user base, TON NFTs have an edge in reaching a global, crypto-native audience.`,
+    image: "/Card 1.png",
+  },
+  {
+    id: "How to Buy and Sell NFTs on TON",
+    title: "How to Buy and Sell NFTs on TON",
+    description: `Buying and selling NFTs on TON is simple and fast, thanks to TON’s user-friendly tools and seamless wallet integrations. To begin, install a TON-compatible wallet like TONkeeper, Tonhub, or MyTonWallet. Fund your wallet with $TON, the native cryptocurrency.\nTo buy, visit a TON NFT marketplace like Getgems, TON Diamonds, or use your NFT Explorer app. Browse collections, filter by category or rarity, and click “Buy” to complete your purchase in just seconds.\nTo sell, connect your wallet, select the NFT you own, and list it with your desired price. Some platforms offer fixed price sales, while others support auctions.\nAll transactions are recorded on the blockchain and settle nearly instantly. Thanks to TON’s low fees, you keep more of your earnings. Whether you’re flipping for profit or collecting for passion, TON makes the NFT experience fast, affordable, and beginner-friendly.`,
+    image: "/Card 1.png",
+  },
+  {
+    id: "Why TON is Perfect for Digital Collectibles",
+    title: "Why TON is Perfect for Digital Collectibles",
+    description: `TON is uniquely suited for digital collectibles due to its high scalability, low transaction fees, and integration with Telegram, one of the world’s most-used messaging apps. Unlike Ethereum, where high gas fees can make trading costly, TON ensures fast and cheap transfers, ideal for buying and selling NFTs.\nIts flexible smart contract platform supports rich metadata, customizable rules, and seamless ownership tracking—crucial features for NFT collections and game assets. TON’s blockchain is also eco-friendly, using a proof-of-stake consensus that reduces environmental impact.\nAnother major advantage is Telegram integration. With native support for TON-based mini apps, bots, and wallets, collectors can discover, share, and trade NFTs directly within chats or channels. This opens up a massive gateway for mainstream adoption.\nIn short, TON combines technical power with social reach, making it a perfect match for creators, collectors, and developers in the NFT ecosystem.`,
+    image: "/Card 1.png",
+  },
+];
+
+
