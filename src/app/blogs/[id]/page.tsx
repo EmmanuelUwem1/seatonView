@@ -4,6 +4,6 @@ type PageProps = {
   params: { id: string };
 };
 
-export default async function BlogPage({ params }: PageProps) {
-  return <ClientBlogPage id={decodeURIComponent(params.id)} />;
+export default function Page({ params }: PageProps) {
+  return <ClientBlogPage id={params.id} />;
 }
