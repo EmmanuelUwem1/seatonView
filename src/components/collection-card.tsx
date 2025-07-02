@@ -18,9 +18,9 @@ function CollectionCard({
   const isPositive = change.startsWith("+");
 
   return (
-    <div className="bg-[#0B1E3FAA] rounded-[9px] p-3.5 flex items-center gap-4 text-white cursor-pointer">
+    <div className="bg-[#182a49] rounded-[9px] p-3.5 flex items-center justify-between w-full gap-4 text-white cursor-pointer">
       {/* Image Left */}
-      <div className="relative w-20 h-20 rounded-md overflow-hidden flex-shrink-0">
+      <div className="relative min-w-14 w-full h-20 rounded-md overflow-hidden flex items-center justify-center">
         <Image
           src={image}
           alt={name}

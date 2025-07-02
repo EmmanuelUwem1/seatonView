@@ -19,14 +19,20 @@ export default function BlogPage({ params }: Props) {
   );
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-16 text-white">
+    <div className="px-4 sm:px-8 md:px-16 lg:px-20 py-16 text-white">
       {/* Breadcrumb */}
-      <p className="text-sm text-gray-400 mb-2">
-        Blog / <span className="text-white font-medium">{blog.title}</span>
+      <p className="text-base font-semibold mb-6">
+        Blog / <span className="text-[#0098EA]">{blog.title}</span>
       </p>
 
+      {/* Blog Title */}
+      <h1 className="text-3xl text-center md:text-4xl font-bold mb-6">
+        {blog.title}
+      </h1>
+
       {/* Blog Image */}
-      <div className="relative w-full h-64 md:h-96 mb-6 rounded-lg overflow-hidden">
+
+      <div className="relative w-full h-64 md:h-96 mb-6 rounded-[15px] overflow-hidden">
         <Image
           src={blog.image}
           alt={blog.title}
@@ -37,22 +43,19 @@ export default function BlogPage({ params }: Props) {
         />
       </div>
 
-      {/* Blog Title */}
-      <h1 className="text-3xl md:text-4xl font-bold mb-4">{blog.title}</h1>
-
       {/* Blog Body Content */}
-      <p className="text-gray-300 leading-relaxed whitespace-pre-line mb-12">
+      <p className=" leading-relaxed whitespace-pre-line font-normal text-lg mb-12">
         {blog.description}
       </p>
 
       {/* Other Blog Topics */}
-      <div className="mt-12">
+      <div className="mt-16">
         {/* <h2 className="text-xl font-bold mb-4">More from the blog</h2> */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="flex flex-wrap lg:flex-nowrap justify-between items-center gap-4">
           {relatedBlogs.map((item) => (
             <div
               key={item.id}
-              className="bg-[#13294B] rounded-md flex items-center gap-4 p-4"
+              className="bg-[#13294B] max-w-md w-80 rounded-md flex items-center gap-4 p-2"
             >
               <div className="relative w-20 h-20 rounded overflow-hidden flex-shrink-0">
                 <Image
@@ -62,17 +65,15 @@ export default function BlogPage({ params }: Props) {
                   objectFit="cover"
                 />
               </div>
-              <div className="flex flex-col justify-between">
-                <h3 className="font-medium text-white text-base truncate max-w-[220px]">
-                  {item.title}
-                </h3>
-                <Link
-                  href={`/blogs/${item.id}`}
-                  className="text-sm text-[#0098EA] font-semibold mt-1 hover:underline"
-                >
-                  See more →
-                </Link>
-              </div>
+              <Link
+                href={`/blogs/${item.id}`}
+                className="flex flex-col justify-between"
+              >
+                <h3 className="font-bold text-white text-lg">{item.title}</h3>
+                <span className="text-base text-[#0098EA] font-semibold mt-1 hover:underline">
+                  Read more →
+                </span>
+              </Link>
             </div>
           ))}
         </div>
