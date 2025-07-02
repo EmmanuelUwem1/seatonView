@@ -66,6 +66,7 @@ function Header() {
           toggle={setOpen}
           direction="right"
           color="#fff"
+          size={20}
         />
       </div>
 
