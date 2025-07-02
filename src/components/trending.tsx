@@ -2,6 +2,8 @@
 import { useState } from "react";
 import NFTCard from "./NFT-card";
 import { MockData } from "@/api/data";
+import CollectionCard from "./collection-card";
+import { CollectionMockData } from "@/api/data";
 
 function Trending() {
   const [activeTab, setActiveTab] = useState<"NFTs" | "Collection">("NFTs");
@@ -49,9 +51,18 @@ function Trending() {
             ))}
           </div>
         ) : (
-          <p className="text-gray-400 mt-4">
-            📦 Top NFT collections will be shown here
-          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {CollectionMockData.map((item) => (
+              <CollectionCard
+                key={item.id}
+                name={item.name}
+                image={item.image}
+                floor={item.floor}
+                total={item.total}
+                change={item.change}
+              />
+            ))}
+          </div>
         )}
       </div>
     </section>
