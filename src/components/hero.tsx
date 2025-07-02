@@ -7,7 +7,7 @@ export default function Hero() {
      
         <section className="flex flex-col w-full md:flex-row gap-6 items-center justify-between px-4 md:px-16 max-md:py-16 md:py-8 text-white">
           {/* Left Content */}
-          <div className="md:w-1/2 space-y-6">
+          <div className="md:w-1/2 space-y-6 relative lg:-top-[3rem]">
             <h1 className="text-4xl md:text-6xl font-semibold">
               Explore NFTs on <span className="text-[#0098EA]">Ton</span> like
               never before.

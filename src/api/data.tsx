@@ -77,7 +77,7 @@ export const CollectionMockData = [
     name: "Frog Star #8798",
     image: "/Image_fx-302 1.png",
     floor: "66.8",
-    total: "90.2k",
+    total: "9.2k",
     change: "+12%",
   },
   {
@@ -85,7 +85,7 @@ export const CollectionMockData = [
     name: "Frog Star #8798",
     image: "/Image_fx-302 1.png",
     floor: "45.1",
-    total: "120.5k",
+    total: "1.5k",
     change: "+9%",
   },
   {
@@ -109,7 +109,7 @@ export const CollectionMockData = [
     name: "Frog Star #8798",
     image: "/Image_fx-302 1.png",
     floor: "6.3",
-    total: "22.1k",
+    total: "2.1k",
     change: "+18%",
   },
   {

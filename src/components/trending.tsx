@@ -9,7 +9,7 @@ function Trending() {
   const [activeTab, setActiveTab] = useState<"NFTs" | "Collection">("NFTs");
 
   return (
-    <section className="flex gap-8 flex-col justify-start items-start w-full px-4 sm:px-8 md:px-16 lg:px-20">
+    <section className="flex gap-8 flex-col justify-start items-start w-full px-4 pb-16  sm:px-8 md:px-16 lg:px-20">
       {/* Header */}
       <div className="flex justify-between items-center w-full">
         <h2 className="font-semibold text-4xl">Trending</h2>
@@ -51,7 +51,7 @@ function Trending() {
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
             {CollectionMockData.map((item) => (
               <CollectionCard
                 key={item.id}
