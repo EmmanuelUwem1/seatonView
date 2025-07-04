@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -22,6 +22,12 @@ function CollectionCard({
   const [imageLoaded, setImageLoaded] = useState(false);
   const isLoading = !name || !image || !floor ;
   // const isPositive = change?.startsWith("+");
+  useEffect(() => {
+    if (image) {
+    setImageLoaded(true);
+      
+    }
+  }, [image]);
 
   return (
     <SkeletonTheme baseColor="#1A263F" highlightColor="#2F3B5C">
@@ -55,7 +61,7 @@ function CollectionCard({
         {/* Info Right */}
         <div className="flex flex-col justify-between w-full">
           <span className="flex justify-start items-center gap-2">
-            <h3 className="font-bold text-lg max-sm:max-w-[18rem] truncate">
+            <h3 className="font-bold text-lg max-sm:max-w-[12rem] truncate">
               {isLoading ? <Skeleton width={100} /> : name}
             </h3>
             <span className="relative flex justify-center items-center h-6 w-6">
@@ -72,7 +78,7 @@ function CollectionCard({
             {isLoading ? (
               <Skeleton width={80} />
             ) : (
-              <span className="truncate overflow-hidden whitespace-nowrap max-sm:max-w-[18rem] ">
+              <span className="truncate overflow-hidden whitespace-nowrap max-sm:max-w-[12rem] ">
                 {floor}
               </span>
             )}
