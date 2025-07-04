@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { motion } from "framer-motion";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -22,12 +22,7 @@ function CollectionCard({
   const [imageLoaded, setImageLoaded] = useState(false);
   const isLoading = !name || !image || !floor ;
   // const isPositive = change?.startsWith("+");
-  useEffect(() => {
-    if (image) {
-    setImageLoaded(true);
-      
-    }
-  }, [image]);
+
 
   return (
     <SkeletonTheme baseColor="#1A263F" highlightColor="#2F3B5C">
