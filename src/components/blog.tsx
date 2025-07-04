@@ -1,4 +1,4 @@
-import BlogCard from "./bog-card";
+import BlogCard from "./cards/blog";
 import { BlogMockData } from "@/lib/data";
 
 function Blog() {

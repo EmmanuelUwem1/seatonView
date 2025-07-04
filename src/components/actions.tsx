@@ -1,4 +1,4 @@
-import ActionCard from "./action-card";
+import ActionCard from "./cards/action";
 
 function Actions() {
   return (
