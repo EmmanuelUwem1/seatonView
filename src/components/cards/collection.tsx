@@ -73,7 +73,9 @@ function CollectionCard({
             {isLoading ? (
               <Skeleton width={80} />
             ) : (
-              <span> {floor} </span>
+              <span className="truncate overflow-hidden whitespace-nowrap max-w-[100px]">
+                {floor}
+              </span>
             )}
           </div>
         </div>
