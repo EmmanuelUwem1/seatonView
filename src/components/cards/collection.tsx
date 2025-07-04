@@ -18,11 +18,10 @@ function CollectionCard({
   name,
   image,
   floor,
-  total,
-  change,
+
 }: CollectionCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
-  const isLoading = !name || !image || !floor || !total || !change;
+  const isLoading = !name || !image || !floor ;
   // const isPositive = change?.startsWith("+");
 
   return (
