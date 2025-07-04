@@ -1,9 +1,7 @@
-
 "use client";
-
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
-import { BlogMockData } from "@/api/data";
+import { BlogMockData } from "@/lib/data";
 import { notFound } from "next/navigation";
 import { motion } from "framer-motion";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";

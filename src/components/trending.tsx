@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
 import NFTCard from "./NFT-card";
-import { MockData } from "@/api/data";
+import { MockData } from "@/lib/data";
 import CollectionCard from "./collection-card";
-import { CollectionMockData } from "@/api/data";
+import { CollectionMockData } from "@/lib/data";
 
 function Trending() {
   const [activeTab, setActiveTab] = useState<"NFTs" | "Collection">("NFTs");

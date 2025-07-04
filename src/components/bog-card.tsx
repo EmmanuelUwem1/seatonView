@@ -49,7 +49,7 @@ function BlogCard({ id, image, title }: BlogCardProps) {
 
         {/* Title + Button */}
         <motion.div
-          className="flex gap-2 justify-between items-center mt-4 pb-5 flex-wrap lg:flex-nowrap"
+          className="flex flex-col gap-2 justify-between items-start mt-4 pb-5 flex-wrap"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
@@ -61,7 +61,7 @@ function BlogCard({ id, image, title }: BlogCardProps) {
 
           <Link
             href={`/blogs/${id}`}
-            className="text-lg bg-[#0098EA] px-3 py-1.5 flex w-36 items-center justify-center rounded-md font-semibold hover:bg-[#007bcc] transition-all"
+            className="text-lg bg-[#0098EA] px-3 py-1.5 flex w-full items-center justify-center rounded-md font-semibold hover:bg-[#007bcc] transition-all"
           >
             Read more
           </Link>

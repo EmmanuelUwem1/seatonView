@@ -1,5 +1,5 @@
 import BlogCard from "./bog-card";
-import { BlogMockData } from "@/api/data";
+import { BlogMockData } from "@/lib/data";
 
 function Blog() {
   return (
