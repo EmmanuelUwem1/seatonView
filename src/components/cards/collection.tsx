@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Image from "next/image";
+import isValidImageUrl from "@/utils/helpers";
 
 type CollectionCardProps = {
   name?: string;
@@ -22,7 +23,7 @@ function CollectionCard({
 }: CollectionCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const isLoading = !name || !image || !floor || !total || !change;
-  const isPositive = change?.startsWith("+");
+  // const isPositive = change?.startsWith("+");
 
   return (
     <SkeletonTheme baseColor="#1A263F" highlightColor="#2F3B5C">
@@ -39,7 +40,7 @@ function CollectionCard({
           )}
           {image && (
             <Image
-              src={image}
+              src={isValidImageUrl(image) ? image : "/Card 1.png"}
               alt={name || "collection"}
               layout="fill"
               objectFit="cover"
@@ -48,6 +49,7 @@ function CollectionCard({
                 imageLoaded ? "opacity-100" : "opacity-0"
               }`}
               onLoadingComplete={() => setImageLoaded(true)}
+              onError={(e) => (e.currentTarget.src = "/Card 1.png")}
             />
           )}
         </div>
@@ -72,13 +74,13 @@ function CollectionCard({
             {isLoading ? (
               <Skeleton width={80} />
             ) : (
-              <span>Floor: {floor} TON</span>
+              <span> {floor} </span>
             )}
           </div>
         </div>
 
         {/* Price Right */}
-        <div className="flex flex-col justify-center items-start gap-1 w-full">
+        {/* <div className="flex flex-col justify-center items-start gap-1 w-full">
           <span className="font-bold">
             {isLoading ? <Skeleton width={60} /> : `${total} Ton`}
           </span>
@@ -89,7 +91,7 @@ function CollectionCard({
           >
             {isLoading ? <Skeleton width={40} /> : change}
           </div>
-        </div>
+        </div> */}
       </motion.div>
     </SkeletonTheme>
   );

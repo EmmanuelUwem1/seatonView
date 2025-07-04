@@ -73,7 +73,7 @@ function Trending() {
                 key={item.address}
                 name={item.metadata.name || "Unknown Collection"}
                 image={item.metadata.image }
-                // floor={item.floor_price || 0}
+                floor={item.metadata.description}
                 // total={item.items_count || 0}
                 // change={item.price_change_24h || 0}
               />
