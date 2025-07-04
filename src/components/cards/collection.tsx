@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Image from "next/image";
-import isValidImageUrl from "@/utils/helpers";
 
 type CollectionCardProps = {
   name?: string;
@@ -39,7 +38,7 @@ function CollectionCard({
           )}
           {image && (
             <Image
-              src={isValidImageUrl(image) ? image : "/Card 1.png"}
+              src={image}
               alt={name || "collection"}
               layout="fill"
               objectFit="cover"
@@ -56,7 +55,7 @@ function CollectionCard({
         {/* Info Right */}
         <div className="flex flex-col justify-between w-full">
           <span className="flex justify-start items-center gap-2">
-            <h3 className="font-bold text-lg truncate">
+            <h3 className="font-bold text-lg max-sm:max-w-[18rem] truncate">
               {isLoading ? <Skeleton width={100} /> : name}
             </h3>
             <span className="relative flex justify-center items-center h-6 w-6">
@@ -73,7 +72,7 @@ function CollectionCard({
             {isLoading ? (
               <Skeleton width={80} />
             ) : (
-              <span className="truncate overflow-hidden whitespace-nowrap max-w-[100px]">
+              <span className="truncate overflow-hidden whitespace-nowrap max-sm:max-w-[18rem] ">
                 {floor}
               </span>
             )}

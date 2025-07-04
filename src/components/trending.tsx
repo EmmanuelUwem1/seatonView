@@ -6,6 +6,7 @@ import CollectionCard from "./cards/collection";
 import { getTonNftCollections } from "@/lib/api";
 import { MockData } from "@/lib/data";
 import { TonNftCollection } from "@/lib/api";
+import isValidImageUrl from "@/utils/helpers";
 
 function Trending() {
   const [activeTab, setActiveTab] = useState<"NFTs" | "Collection">("NFTs");
@@ -72,7 +73,11 @@ function Trending() {
               <CollectionCard
                 key={item.address}
                 name={item.metadata.name || "Unknown Collection"}
-                image={item.metadata.image }
+                image={
+                  isValidImageUrl(item.metadata.image)
+                    ? item.metadata.image
+                    : "/Card 1.png"
+                }
                 floor={item.metadata.description}
                 // total={item.items_count || 0}
                 // change={item.price_change_24h || 0}
