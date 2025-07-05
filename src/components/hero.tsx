@@ -16,6 +16,7 @@ export default function Hero() {
 
   // Mouse position state for camera movement
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  console.log(mousePosition);
 
   // Setup Three.js scene
   useEffect(() => {
@@ -210,17 +211,17 @@ export default function Hero() {
 
         {/* Right Side 3D Model Reveal - Replacing Image */}
         <motion.div
-          className="md:w-1/2 sm:w-[80%] w-full mt-10 md:mt-0 relative"
+          className="md:w-1/2 sm:w-[80%] w-full mt-10 md:mt-0 relative "
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }}
         >
           <div
             ref={mountRef}
-            className="relative max-sm:-left-16 flex items-center justify-center w-full h-[300px] md:h-[400px] lg:h-[600px] xl:h-[750px]"
+            className="relative max-sm:-left-16 flex items-center justify-center w-[90%] lg-w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-[600px] xl:h-[750px]"
           />
           <motion.span
-            className="flex flex-col justify-center items-center gap bg-[#FFFFFF] px-4 pb-4 pt-10 rounded-[10px] absolute max-sm:-right-16 right-0 bottom-1/2"
+            className="flex flex-col justify-center items-center gap bg-[#FFFFFF] px-4 pb-4 pt-10 rounded-[10px] absolute right-0 bottom-1/2"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.6 }}
@@ -256,7 +257,7 @@ export default function Hero() {
         </motion.div>
       </section>
 
-      {/* ✨ Fullscreen Search Modal */}
+      {/* Fullscreen Search Modal */}
       <AnimatePresence>
         {isModalOpen && (
           <motion.div
