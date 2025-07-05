@@ -2,8 +2,9 @@
 
 import axios from "axios";
 
-const TON_NFT_COLLECTIONS_URL = "https://tonapi.io/api-v2#operations-NFT-getNftCollection;"
-// "https://tonapi.io/v2/nfts/collections?limit=15&offset=10";
+const TON_NFT_COLLECTIONS_URL =
+"https://tonapi.io/v2/nfts/collections?limit=15&offset=10";
+  // "https://tonapi.io/api-v2#operations-NFT-getNftCollection"
 
 /**
  * Fetches a paginated list of NFT collections from TonAPI.
