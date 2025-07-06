@@ -3,7 +3,50 @@
 import axios from "axios";
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEN_URL;
 const TON_NFT_COLLECTIONS_URL =
-"https://tonapi.io/v2/nfts/collections?limit=15&offset=10";
+  "https://tonapi.io/v2/nfts/collections?limit=15&offset=10";
+export interface TonNftItem {
+  address: string;
+  index: number;
+  owner: {
+    address: string;
+    is_scam: boolean;
+    is_wallet: boolean;
+  };
+  verified: boolean;
+  metadata: {
+    name: string;
+    image: string;
+    description: string;
+    attributes: {
+      trait_type: string;
+      value: string;
+    }[];
+  };
+  previews: {
+    resolution: string;
+    url: string;
+  }[];
+  approved_by: string[];
+  trust: string;
+}
+
+
+
+export async function getNftsByWallet(
+  walletAddress: string
+): Promise<TonNftItem[]> {
+  try {
+    const url = `${BACKEND_URL}/api/nfts/wallet/${walletAddress}`;
+    const response = await axios.get(url);
+
+    return response.data?.nft_items || [];
+  } catch (error) {
+    console.error("Error fetching NFTs by wallet:", error);
+    return [];
+  }
+}
+
+
 
 export interface TonNftCollection {
   address: string;

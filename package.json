@@ -19,7 +19,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-loading-skeleton": "^3.5.0",
-    "three": "^0.178.0"
+    "three": "^0.178.0",
+    "ton-core": "^0.53.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

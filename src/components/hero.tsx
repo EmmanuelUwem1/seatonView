@@ -5,43 +5,59 @@ import Image from "next/image";
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import type { TonNftCollection } from "@/lib/api";
-
+// import { formatToBounceable } from "@/utils/helpers";
 import CollectionCard from "./cards/collection"; 
 import { isValidTONWallet } from "@/utils/helpers";
 import { useNftCollections } from "@/app/context/nftContext";
+import { getNftsByWallet } from "@/lib/api";
+import NFTCard from "./cards/NFT";
+import type { TonNftCollection, TonNftItem } from "@/lib/api";
+
 
 export default function Hero() {
   const [isModalOpen, setModalOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const mountRef = useRef<HTMLDivElement>(null);
   const modelRef = useRef<THREE.Group | null>(null);
-  const sceneRef = useRef<THREE.Scene | null>(null);
+  const sceneRef = useRef<THREE.Scene | null>(null);  
   const controlsRef = useRef<OrbitControls | null>(null);
   const [wallet, setWallet] = useState("")
   const allCollections = useNftCollections();
   const [matchedCollection, setMatchedCollection] = useState<TonNftCollection | null>(null);
   const [loading, setLoading] = useState(false);
+  const [ownedNfts, setOwnedNfts] = useState<TonNftItem[]>([]);
 
   
 
   // Mouse position state for camera movement
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   console.log(mousePosition);
-
   const handlePaste = async () => {
     const clipboardText = await navigator.clipboard.readText();
     setWallet(clipboardText);
     setModalOpen(true);
-    if (!isValidTONWallet(wallet)) return;
+
+    if (!isValidTONWallet(clipboardText)) return;
 
     setLoading(true);
-    setTimeout(() => {
-      const found = allCollections?.find((col) => col.owner.address === wallet);
-      setMatchedCollection(found || null);
+
+    try {
+      const foundCollection = allCollections?.find(
+        (col) => col.owner.address === clipboardText
+      );
+      setMatchedCollection(foundCollection || null);
+
+      const nftItems = await getNftsByWallet(clipboardText);
+      setOwnedNfts(nftItems); // assuming you have a state like: const [ownedNfts, setOwnedNfts] = useState([])
+    } catch (error) {
+      console.error("Paste search failed:", error);
+      setMatchedCollection(null);
+      setOwnedNfts([]);
+    } finally {
       setLoading(false);
-    }, 600); // small delay to show loader
+    }
   };
+  
 
 
   // Setup Three.js scene
@@ -312,7 +328,7 @@ export default function Hero() {
 
               <motion.button
                 onClick={handlePaste}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-[#0098EA] hover:bg-[#00B7FF] text-white text-sm font-semibold px-4 py-2 rounded-md"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-[#0098EA] hover:bg-[#00B7FF] text-white text-sm font-semibold px-4 py-2 rounded-md cursor-pointer"
                 initial={{ scale: 0.8, opacity: 0, x: 10 }}
                 animate={{ scale: 1, opacity: 1, x: 0 }}
                 transition={{
@@ -351,11 +367,14 @@ export default function Hero() {
               </p>
             )}
 
-            {!loading && isValidTONWallet(wallet) && !matchedCollection && (
-              <p className="text-center text-gray-400 mt-6">
-                No matching collection found.
-              </p>
-            )}
+            {!loading &&
+              isValidTONWallet(wallet) &&
+              !matchedCollection &&
+              !ownedNfts && (
+                <p className="text-center text-gray-400 mt-6">
+                  No matching collections or NFTs found.
+                </p>
+              )}
 
             {!loading && matchedCollection && (
               <CollectionCard
@@ -363,6 +382,18 @@ export default function Hero() {
                 image={matchedCollection.metadata.image}
                 floor={matchedCollection.metadata.description}
               />
+            )}
+            {ownedNfts.length > 0 && (
+              <div className="grid gap-6 mt-8">
+                {ownedNfts.map((nft, idx) => (
+                  <NFTCard
+                    key={idx}
+                    name={nft.metadata?.name}
+                    image={nft.metadata?.image || nft.previews?.[2]?.url} // fallback preview image
+                    price={nft.trust === "blacklist" ? "⚠️" : "—"} // optional: use trust flag creatively
+                  />
+                ))}
+              </div>
             )}
           </motion.div>
         )}
