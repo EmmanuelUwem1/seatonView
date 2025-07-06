@@ -55,6 +55,13 @@ export default function Hero() {
       fetchWalletAssets(wallet);
     }
   }, [wallet]);
+  useEffect(() => {
+    if (wallet.trim() === "") {
+      setMatchedCollection(null);
+      setOwnedNfts([]);
+      setLoading(false);
+    }
+  }, [wallet]);
   
   // Mouse position state for camera movement
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
