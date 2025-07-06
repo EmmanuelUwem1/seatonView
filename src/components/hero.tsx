@@ -5,6 +5,11 @@ import Image from "next/image";
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import type { TonNftCollection } from "@/lib/api";
+
+import CollectionCard from "./cards/collection"; 
+import { isValidTONWallet } from "@/utils/helpers";
+import { useNftCollections } from "@/app/context/nftContext";
 
 export default function Hero() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -13,10 +18,31 @@ export default function Hero() {
   const modelRef = useRef<THREE.Group | null>(null);
   const sceneRef = useRef<THREE.Scene | null>(null);
   const controlsRef = useRef<OrbitControls | null>(null);
+  const [wallet, setWallet] = useState("")
+  const allCollections = useNftCollections();
+  const [matchedCollection, setMatchedCollection] = useState<TonNftCollection | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  
 
   // Mouse position state for camera movement
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   console.log(mousePosition);
+
+  const handlePaste = async () => {
+    const clipboardText = await navigator.clipboard.readText();
+    setWallet(clipboardText);
+    setModalOpen(true);
+    if (!isValidTONWallet(wallet)) return;
+
+    setLoading(true);
+    setTimeout(() => {
+      const found = allCollections?.find((col) => col.owner.address === wallet);
+      setMatchedCollection(found || null);
+      setLoading(false);
+    }, 600); // small delay to show loader
+  };
+
 
   // Setup Three.js scene
   useEffect(() => {
@@ -268,24 +294,63 @@ export default function Hero() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <motion.input
-              ref={inputRef}
-              type="text"
-              placeholder="TON wallet or collection address"
-              autoFocus
-              onBlur={() => setModalOpen(false)}
-              className="w-full max-w-2xl mx-auto px-6 py-5 text-xl rounded-xl bg-[#13294B]/90 border border-[#1A263F] text-white placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-[#0098EA]"
-              initial={{ width: 0, opacity: 0, y: -10 }}
-              animate={{ width: "100%", opacity: 1, y: 0 }}
-              exit={{ width: 0, opacity: 0, y: -10 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-            />
+            <div className="relative w-full max-w-2xl mx-auto">
+              <motion.input
+                ref={inputRef}
+                type="text"
+                value={wallet} // Make sure you're controlling the input
+                onChange={(e) => setWallet(e.target.value)}
+                placeholder="TON wallet or collection address"
+                autoFocus
+                onBlur={() => setModalOpen(false)}
+                className="w-full px-6 py-5 pr-20 text-xl rounded-xl bg-[#13294B]/90 border border-[#1A263F] text-white placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-[#0098EA]"
+                initial={{ width: 0, opacity: 0, y: -10 }}
+                animate={{ width: "100%", opacity: 1, y: 0 }}
+                exit={{ width: 0, opacity: 0, y: -10 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+              />
+
+              <button
+                onClick={handlePaste}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-[#0098EA] hover:bg-[#00B7FF] text-white text-sm font-semibold px-4 py-2 rounded-md transition-all duration-200"
+              >
+                Paste
+              </button>
+            </div>
 
             <div className="mt-10 px-4 w-full max-w-5xl mx-auto">
               <p className="text-gray-400 text-center text-sm">
                 NFT results will appear here...
               </p>
             </div>
+            {loading && (
+              <div className="mt-10 text-center">
+                <div className="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full mx-auto"></div>
+                <p className="text-sm mt-2 text-blue-300">
+                  Searching collection...
+                </p>
+              </div>
+            )}
+
+            {!loading && !isValidTONWallet(wallet) && wallet.length > 0 && (
+              <p className="text-center text-red-400 mt-6">
+                Invalid TON wallet address format.
+              </p>
+            )}
+
+            {!loading && isValidTONWallet(wallet) && !matchedCollection && (
+              <p className="text-center text-gray-400 mt-6">
+                No matching collection found.
+              </p>
+            )}
+
+            {!loading && matchedCollection && (
+              <CollectionCard
+                name={matchedCollection.metadata.name}
+                image={matchedCollection.metadata.image}
+                floor={matchedCollection.metadata.description}
+              />
+            )}
           </motion.div>
         )}
       </AnimatePresence>

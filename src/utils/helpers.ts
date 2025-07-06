@@ -6,3 +6,8 @@ export default function isValidImageUrl(url: string) {
     return false;
   }
 }
+export function isValidTONWallet(addr: string) {
+return addr.startsWith("EQ") && addr.length >= 48;
+  
+}
+
