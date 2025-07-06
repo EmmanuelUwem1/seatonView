@@ -27,8 +27,34 @@ export default function Hero() {
   const [loading, setLoading] = useState(false);
   const [ownedNfts, setOwnedNfts] = useState<TonNftItem[]>([]);
 
-  
+  const fetchWalletAssets = async (address: string) => {
+    if (!isValidTONWallet(address)) return;
 
+    setLoading(true);
+
+    try {
+      const foundCollection = allCollections?.find(
+        (col) => col.owner.address === address
+      );
+      setMatchedCollection(foundCollection || null);
+
+      const nftItems = await getNftsByWallet(address);
+      setOwnedNfts(nftItems);
+    } catch (error) {
+      console.error("Failed to fetch wallet assets:", error);
+      setMatchedCollection(null);
+      setOwnedNfts([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  useEffect(() => {
+    if (isValidTONWallet(wallet)) {
+      fetchWalletAssets(wallet);
+    }
+  }, [wallet]);
+  
   // Mouse position state for camera movement
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   console.log(mousePosition);
@@ -36,27 +62,9 @@ export default function Hero() {
     const clipboardText = await navigator.clipboard.readText();
     setWallet(clipboardText);
     setModalOpen(true);
-
-    if (!isValidTONWallet(clipboardText)) return;
-
-    setLoading(true);
-
-    try {
-      const foundCollection = allCollections?.find(
-        (col) => col.owner.address === clipboardText
-      );
-      setMatchedCollection(foundCollection || null);
-
-      const nftItems = await getNftsByWallet(clipboardText);
-      setOwnedNfts(nftItems); // assuming you have a state like: const [ownedNfts, setOwnedNfts] = useState([])
-    } catch (error) {
-      console.error("Paste search failed:", error);
-      setMatchedCollection(null);
-      setOwnedNfts([]);
-    } finally {
-      setLoading(false);
-    }
+    fetchWalletAssets(clipboardText);
   };
+  
   
 
 
@@ -304,12 +312,13 @@ export default function Hero() {
         {isModalOpen && (
           <motion.div
             key="wallet-overlay"
-            className="fixed inset-0 z-50 bg-[#0B1E3F]/80 backdrop-blur-md px-4 pt-10 flex flex-col"
+            className="fixed inset-0 z-50 bg-[#0B1E3F]/80 backdrop-blur-md px-4 pt-10 flex flex-col overflow-y-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
           >
+            {/* 🎯 Input Section */}
             <div className="relative w-full max-w-2xl mx-auto">
               <motion.input
                 ref={inputRef}
@@ -344,57 +353,61 @@ export default function Hero() {
               </motion.button>
             </div>
 
-            {!wallet && !loading && !matchedCollection && (
-              <div className="mt-10 px-4 w-full max-w-5xl mx-auto">
+            {/* 📦 Results Section */}
+            <div className="w-full max-w-5xl mx-auto mt-10 px-4 pb-20">
+              {!wallet && !loading && !matchedCollection && (
                 <p className="text-gray-400 text-center text-sm">
                   NFT results will appear here...
                 </p>
-              </div>
-            )}
+              )}
 
-            {loading && (
-              <div className="mt-10 text-center">
-                <div className="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full mx-auto"></div>
-                <p className="text-sm mt-2 text-blue-300">
-                  Searching collection...
-                </p>
-              </div>
-            )}
+              {loading && (
+                <div className="text-center">
+                  <div className="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full mx-auto" />
+                  <p className="text-sm mt-2 text-blue-300">
+                    Searching NFts or collections...
+                  </p>
+                </div>
+              )}
 
-            {!loading && !isValidTONWallet(wallet) && wallet.length > 0 && (
-              <p className="text-center text-red-400 mt-6">
-                Invalid TON wallet address format.
-              </p>
-            )}
-
-            {!loading &&
-              isValidTONWallet(wallet) &&
-              !matchedCollection &&
-              !ownedNfts && (
-                <p className="text-center text-gray-400 mt-6">
-                  No matching collections or NFTs found.
+              {!loading && !isValidTONWallet(wallet) && wallet.length > 0 && (
+                <p className="text-center text-red-400 mt-6">
+                  Invalid TON wallet address format.
                 </p>
               )}
 
-            {!loading && matchedCollection && (
-              <CollectionCard
-                name={matchedCollection.metadata.name}
-                image={matchedCollection.metadata.image}
-                floor={matchedCollection.metadata.description}
-              />
-            )}
-            {ownedNfts.length > 0 && (
-              <div className="grid gap-6 mt-8">
-                {ownedNfts.map((nft, idx) => (
-                  <NFTCard
-                    key={idx}
-                    name={nft.metadata?.name}
-                    image={nft.metadata?.image || nft.previews?.[2]?.url} // fallback preview image
-                    price={nft.trust === "blacklist" ? "⚠️" : "—"} // optional: use trust flag creatively
+              {!loading &&
+                isValidTONWallet(wallet) &&
+                !matchedCollection &&
+                ownedNfts.length === 0 && (
+                  <p className="text-center text-gray-400 mt-6">
+                    No matching collections or NFTs found.
+                  </p>
+                )}
+
+              {!loading && matchedCollection && (
+                <div className="mt-6">
+                  <CollectionCard
+                    name={matchedCollection.metadata.name}
+                    image={matchedCollection.metadata.image}
+                    floor={matchedCollection.metadata.description}
                   />
-                ))}
-              </div>
-            )}
+                </div>
+              )}
+
+              {ownedNfts.length > 0 && (
+                <div className="grid gap-6 mt-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+                  {ownedNfts.map((nft, idx) => (
+                    <NFTCard
+                      key={idx}
+                      name={nft.metadata?.name}
+                      image={nft.metadata?.image || nft.previews?.[2]?.url}
+                      price={nft.trust === "blacklist" ? "⚠️" : "—"}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

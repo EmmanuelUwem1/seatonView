@@ -1,7 +1,7 @@
 "use server";
 
 import axios from "axios";
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEN_URL;
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 const TON_NFT_COLLECTIONS_URL =
   "https://tonapi.io/v2/nfts/collections?limit=15&offset=10";
 export interface TonNftItem {
@@ -38,7 +38,7 @@ export async function getNftsByWallet(
   try {
     const url = `${BACKEND_URL}/api/nfts/wallet/${walletAddress}`;
     const response = await axios.get(url);
-
+    console.log("inputed address is : ", walletAddress);
     return response.data?.nft_items || [];
   } catch (error) {
     console.error("Error fetching NFTs by wallet:", error);
