@@ -34,6 +34,11 @@ const nextConfig: NextConfig = {
         hostname: "dirtycoins.fun",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "potok40.pages.dev",
+        pathname: "/**",
+      },
     ],
   },
 };

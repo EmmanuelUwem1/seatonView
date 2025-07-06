@@ -12,6 +12,7 @@ import { useNftCollections } from "@/app/context/nftContext";
 import { getNftsByWallet } from "@/lib/api";
 import NFTCard from "./cards/NFT";
 import type { TonNftCollection, TonNftItem } from "@/lib/api";
+import { formatToBounceable } from "@/utils/helpers";
 
 
 export default function Hero() {
@@ -34,7 +35,7 @@ export default function Hero() {
 
     try {
       const foundCollection = allCollections?.find(
-        (col) => col.owner.address === address
+        (col) => formatToBounceable(col.owner.address) === address
       );
       setMatchedCollection(foundCollection || null);
 
