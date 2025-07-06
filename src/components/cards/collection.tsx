@@ -30,7 +30,7 @@ function CollectionCard({
         initial={{ opacity: 0, y: 25, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="bg-[#182a49] rounded-[9px] p-3.5 flex items-center justify-between w-full gap-4 text-white cursor-pointer shadow-md"
+        className="bg-[#182a49] rounded-[9px] p-3.5 flex items-center justify-between w-full gap-4 text-white cursor-pointer overflow-x-hidden shadow-md"
       >
         {/* Image Left */}
         <div className="relative min-w-14 w-[56px] h-20 rounded-md overflow-hidden flex items-center justify-center">
@@ -73,7 +73,7 @@ function CollectionCard({
             {isLoading ? (
               <Skeleton width={80} />
             ) : (
-              <span className="truncate overflow-hidden whitespace-nowrap max-sm:max-w-[12rem] ">
+              <span className="truncate overflow-hidden whitespace-nowrap max-sm:max-w-[12rem] sm:[14rem]">
                 {floor}
               </span>
             )}
