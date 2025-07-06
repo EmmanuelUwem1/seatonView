@@ -298,31 +298,44 @@ export default function Hero() {
               <motion.input
                 ref={inputRef}
                 type="text"
-                value={wallet} // Make sure you're controlling the input
+                value={wallet}
                 onChange={(e) => setWallet(e.target.value)}
                 placeholder="TON wallet or collection address"
                 autoFocus
                 onBlur={() => setModalOpen(false)}
-                className="w-full px-6 py-5 pr-20 text-xl rounded-xl bg-[#13294B]/90 border border-[#1A263F] text-white placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-[#0098EA]"
+                className="w-full px-6 py-5 pr-24 text-xl rounded-xl bg-[#13294B]/90 border border-[#1A263F] text-white placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-[#0098EA]"
                 initial={{ width: 0, opacity: 0, y: -10 }}
                 animate={{ width: "100%", opacity: 1, y: 0 }}
                 exit={{ width: 0, opacity: 0, y: -10 }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
               />
 
-              <button
+              <motion.button
                 onClick={handlePaste}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-[#0098EA] hover:bg-[#00B7FF] text-white text-sm font-semibold px-4 py-2 rounded-md transition-all duration-200"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-[#0098EA] hover:bg-[#00B7FF] text-white text-sm font-semibold px-4 py-2 rounded-md"
+                initial={{ scale: 0.8, opacity: 0, x: 10 }}
+                animate={{ scale: 1, opacity: 1, x: 0 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 20,
+                  delay: 0.6,
+                }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 Paste
-              </button>
+              </motion.button>
             </div>
 
-            <div className="mt-10 px-4 w-full max-w-5xl mx-auto">
-              <p className="text-gray-400 text-center text-sm">
-                NFT results will appear here...
-              </p>
-            </div>
+            {!wallet && !loading && !matchedCollection && (
+              <div className="mt-10 px-4 w-full max-w-5xl mx-auto">
+                <p className="text-gray-400 text-center text-sm">
+                  NFT results will appear here...
+                </p>
+              </div>
+            )}
+
             {loading && (
               <div className="mt-10 text-center">
                 <div className="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full mx-auto"></div>
