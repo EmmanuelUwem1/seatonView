@@ -326,7 +326,7 @@ export default function Hero() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
           >
-            {/* 🎯 Input Section */}
+            {/*  Input Section */}
             <div className="relative w-full max-w-2xl mx-auto">
               <motion.input
                 ref={inputRef}
@@ -361,7 +361,7 @@ export default function Hero() {
               </motion.button>
             </div>
 
-            {/* 📦 Results Section */}
+            {/*  Results Section */}
             <div className="w-full max-w-5xl mx-auto mt-10 px-4 pb-20">
               {!wallet && !loading && !matchedCollection && (
                 <p className="text-gray-400 text-center text-sm">
@@ -404,7 +404,7 @@ export default function Hero() {
               )}
 
               {ownedNfts.length > 0 && (
-                <div className="grid gap-6 mt-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4 mt-6">
                   {ownedNfts.map((nft, idx) => (
                     <NFTCard
                       key={idx}

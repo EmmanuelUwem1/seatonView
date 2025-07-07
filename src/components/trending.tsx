@@ -1,28 +1,20 @@
 "use client";
-
+// import type { TonNftCollection } from "@/lib/api";
 import { useState, useEffect } from "react";
 import NFTCard from "./cards/NFT";
 import CollectionCard from "./cards/collection";
-import { getTonNftCollections } from "@/lib/api";
 import { MockData } from "@/lib/data";
-import { TonNftCollection } from "@/lib/api";
+import { useNftCollections } from "@/app/context/nftContext";
 import isValidImageUrl from "@/utils/helpers";
 
 function Trending() {
   const [activeTab, setActiveTab] = useState<"NFTs" | "Collection">("NFTs");
-  const [collections, setCollections] = useState<TonNftCollection[]>([]);
 
+  const collections = useNftCollections();
+ 
   useEffect(() => {
-    if (activeTab === "Collection") {
-      (async () => {
-        const result = await getTonNftCollections();
-        if (result.length  > 0) {
-          setCollections(result);
-        }
-      })();
-    }
-  }, [activeTab]);
-
+    console.log('The fetched collections are : ', collections);
+},[collections])
   return (
     <section className="flex gap-8 flex-col justify-start items-start w-full px-4 pb-16 sm:px-8 md:px-16 lg:px-20">
       {/* Header */}
@@ -69,7 +61,7 @@ function Trending() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 mt-6">
-            {collections.map((item) => (
+            {collections.map((item ) => (
               <CollectionCard
                 key={item.address}
                 name={item.metadata.name || "Unknown Collection"}
