@@ -371,7 +371,8 @@ export default function Hero() {
 
               {loading && (
                 <div className="text-center">
-                  <div className="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full mx-auto" />
+                  <div className="animate-spin h-10 w-10 border-4 border-blue-500 border-t-white rounded-full mx-auto" />
+
                   <p className="text-sm mt-2 text-blue-300">
                     Searching NFts or collections...
                   </p>
@@ -410,7 +411,7 @@ export default function Hero() {
                       key={idx}
                       name={nft.metadata?.name}
                       image={nft.metadata?.image || nft.previews?.[2]?.url}
-                      price={nft.trust === "blacklist" ? "⚠️" : "—"}
+                      price={nft.trust}
                     />
                   ))}
                 </div>
