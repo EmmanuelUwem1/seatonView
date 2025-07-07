@@ -8,7 +8,7 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 // import { formatToBounceable } from "@/utils/helpers";
 import CollectionCard from "./cards/collection"; 
 import { isValidTONWallet } from "@/utils/helpers";
-import { useNftCollections } from "@/app/context/nftContext";
+import { useNftCollections } from "@/context/nftContext";
 import { getNftsByWallet } from "@/lib/api";
 import NFTCard from "./cards/NFT";
 import type { TonNftCollection, TonNftItem } from "@/lib/api";

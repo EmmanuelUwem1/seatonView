@@ -3,7 +3,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { Darker_Grotesque } from "next/font/google";
-import { NftProvider } from "./context/nftContext";
+import { NftProvider } from "../context/nftContext";
 
 const darkerGrotesque = Darker_Grotesque({
   subsets: ["latin"],

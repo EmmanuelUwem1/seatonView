@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import NFTCard from "./cards/NFT";
 import CollectionCard from "./cards/collection";
 import { MockData } from "@/lib/data";
-import { useNftCollections } from "@/app/context/nftContext";
+import { useNftCollections } from "@/context/nftContext";
 import isValidImageUrl from "@/utils/helpers";
 
 function Trending() {
