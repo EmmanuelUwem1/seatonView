@@ -325,6 +325,7 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
+            onClick={() => setModalOpen(false)}
           >
             {/*  Input Section */}
             <div className="relative w-full max-w-2xl mx-auto">
@@ -335,7 +336,7 @@ export default function Hero() {
                 onChange={(e) => setWallet(e.target.value)}
                 placeholder="TON wallet or collection address"
                 autoFocus
-                onBlur={() => setModalOpen(false)}
+                // onBlur={() => setModalOpen(false)}
                 className="w-full px-6 py-5 pr-24 text-xl rounded-xl bg-[#13294B]/90 border border-[#1A263F] text-white placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-[#0098EA]"
                 initial={{ width: 0, opacity: 0, y: -10 }}
                 animate={{ width: "100%", opacity: 1, y: 0 }}
@@ -362,7 +363,10 @@ export default function Hero() {
             </div>
 
             {/*  Results Section */}
-            <div className="w-full max-w-5xl mx-auto mt-10 px-4 pb-20">
+            <div
+              className="w-full max-w-5xl mx-auto mt-10 px-4pb-20"
+              onClick={() => setModalOpen(false)}
+            >
               {!wallet && !loading && !matchedCollection && (
                 <p className="text-gray-400 text-center text-sm">
                   NFT results will appear here...
@@ -405,7 +409,10 @@ export default function Hero() {
               )}
 
               {ownedNfts.length > 0 && (
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4 mt-6">
+                <div
+                  className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4 mt-6"
+                  onClick={(e) => e.stopPropagation()} 
+                >
                   {ownedNfts.map((nft, idx) => (
                     <NFTCard
                       key={idx}
