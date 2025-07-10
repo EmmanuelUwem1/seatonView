@@ -1,3 +1,39 @@
+# SeatonView 🌐🚀
+
+**Explore NFTs on the TON Blockchain with style and interactivity**
+
+SeatonView is a sleek web application built with Next.js, designed to provide users with an engaging way to explore NFTs on the TON blockchain. Whether you're curious about NFT collections or want to check specific wallet holdings, SeatonView delivers a fast, modern experience backed by cutting-edge animation and responsive design.
+
+---
+
+## 🧠 Key Features
+
+- 🔍 **TON Wallet Search** – Input any TON wallet address to discover associated NFTs and collections
+- 🖼️ **NFT Explorer** – View detailed data and imagery of NFTs hosted on the TON blockchain
+- 🎥 **Captivating Animations** – Framer Motion powers smooth transitions and effects
+- 🎮 **3D Interaction** – Three.js brings the Captain NFT image to life with dynamic visual storytelling
+- 📰 **Built-in Blog** – Stay updated with the latest developments and insights from the TON ecosystem
+- 📱 **Responsive UI** – Clean, modern design optimized for both desktop and mobile
+
+---
+
+
+
+## ⚙️ Tech Stack
+
+| Technology       | Role & Purpose                             |
+|------------------|---------------------------------------------|
+| **Next.js**      | Framework for building the frontend         |
+| **TON API**      | Interface to the TON blockchain data        |
+| **TON Library**  | Blockchain utility functions and wallet ops |
+| **Framer Motion**| UI animations and smooth transitions        |
+| **Three.js**     | Rendering dynamic 3D visuals                |
+| **TypeScript**   | Enhancing code with type safety             |
+| **Tailwind CSS**  |Utility-first CSS framework for styling     |
+
+
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
